@@ -1,4 +1,27 @@
 
+Displace's Template Mod Package
+====
+
+This is specifically a template designed around data generation, and various other more tedious things that I would
+normally have to do over and over again, but apparently I'm now a "programmer", and so I am going to try and 
+use good design principles and focus on building decent code, rather than creating insanely un-optimized slop.
+
+The hope with this is that I can use the template when working on some other, far more major mod ideas, but still
+build a good foundation while working on lower end / tiered mods. That being said, when changing this to be the mod name
+a few things must be done.
+
+1. Change the name of the base folder, that way the name matches. `net.displace.*insert_mod_name_here*`
+2. The main mod class must also be properly named. `TemplateMod` ➡️ `ProgressionalCopper` or something like that.
+3. The client needs to match the changed information, so the name should also be changed `TemplateModClient`
+4. Change the MOD_ID variable in the main mod class. Make it unique, the last thing you want is a clash with other mod ids
+
+
+_Additional & Useful Information_
+====
+- When working on Mod Compatibility, or some kind of equal task, adding mods for testing should be done within the `run` folder.
+This is where you will add the extra mods.
+
+
 Installation information
 =======
 
