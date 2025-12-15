@@ -1,5 +1,7 @@
 package net.displace.progressional_copper;
 
+import net.displace.progressional_copper.items.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -30,6 +32,11 @@ public class ProgressionalCopper {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);
 
+        // 12/15/2025 - add registrations here.
+        ModItems.register(modEventBus);
+
+
+
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ProgressionalCopper) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
@@ -57,7 +64,10 @@ public class ProgressionalCopper {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.IRON_TO_COPPER_TEMPLATE);
+            event.accept(ModItems.RUBY);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
