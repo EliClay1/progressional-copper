@@ -13,14 +13,15 @@ a few things must be done.
 1. Change the name of the base folder, that way the name matches. `net.displace.*insert_mod_name_here*`
 2. The main mod class must also be properly named. `TemplateMod` ➡️ `ProgressionalCopper` or something like that.
 3. The client needs to match the changed information, so the name should also be changed `TemplateModClient`
-4. Change the MOD_ID variable in the main mod class. Make it unique, the last thing you want is a clash with other mod ids
-
+4. Change the MOD_ID variable in the main mod class. Make it unique, the last thing you want is a clash with other mod ids.
+5. Modify the `gradle.properties` file. Change it to fit the current mod information.
 
 _Additional & Useful Information_
 ====
 - When working on Mod Compatibility, or some kind of equal task, adding mods for testing should be done within the `run` folder.
 This is where you will add the extra mods.
-
+- To update the version of neoforge that is running, change `gradle.properties` and check the neoforge site for the latest version.
+For this case, the `neo_version` variable should be changed to the latest version. (for me, `21.11.6-beta`)
 
 Installation information
 =======
