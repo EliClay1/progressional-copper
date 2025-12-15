@@ -1,4 +1,4 @@
-package net.displace.templatemod;
+package net.displace.progressional_copper;
 
 import org.slf4j.Logger;
 
@@ -17,21 +17,21 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(TemplateMod.MOD_ID)
-public class TemplateMod {
+@Mod(ProgressionalCopper.MOD_ID)
+public class ProgressionalCopper {
     // Define mod id in a common place for everything to reference
-    public static final String MOD_ID = "template_mod";
+    public static final String MOD_ID = "progressional_copper";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public TemplateMod(IEventBus modEventBus, ModContainer modContainer) {
+    public ProgressionalCopper(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (TemplateMod) to respond directly to events.
+        // Note that this is necessary if and only if we want *this* class (ProgressionalCopper) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 

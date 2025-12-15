@@ -1,4 +1,4 @@
-package net.displace.templatemod;
+package net.displace.progressional_copper;
 
 import java.util.List;
 

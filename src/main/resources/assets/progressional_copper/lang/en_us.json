@@ -1,0 +1,13 @@
+{
+  "itemGroup.progressional_copper": "Example Mod Tab",
+  "block.progressional_copper.example_block": "Example Block",
+  "item.progressional_copper.example_item": "Example Item",
+
+  "progressional_copper.configuration.title": "Example Mod Configs",
+  "progressional_copper.configuration.section.progressional_copper.common.toml": "Example Mod Configs",
+  "progressional_copper.configuration.section.progressional_copper.common.toml.title": "Example Mod Configs",
+  "progressional_copper.configuration.items": "Item List",
+  "progressional_copper.configuration.logDirtBlock": "Log Dirt Block",
+  "progressional_copper.configuration.magicNumberIntroduction": "Magic Number Text",
+  "progressional_copper.configuration.magicNumber": "Magic Number"
+}
