@@ -22,6 +22,8 @@ _Additional & Useful Information_
 This is where you will add the extra mods.
 - To update the version of neoforge that is running, change `gradle.properties` and check the neoforge site for the latest version.
 For this case, the `neo_version` variable should be changed to the latest version. (for me, `21.11.6-beta`)
+- Building is super easy, just go to the gradle icon, and run `Tasks/Build/jar`. The file will be located in `build/libs`
+
 
 Installation information
 =======
