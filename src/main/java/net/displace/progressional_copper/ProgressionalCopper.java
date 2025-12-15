@@ -65,7 +65,7 @@ public class ProgressionalCopper {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.IRON_TO_COPPER_TEMPLATE);
+            event.accept(ModItems.COPPER_TO_IRON_TEMPLATE);
             event.accept(ModItems.RUBY);
         }
     }

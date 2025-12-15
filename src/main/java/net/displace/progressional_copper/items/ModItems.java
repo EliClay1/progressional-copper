@@ -1,8 +1,10 @@
 package net.displace.progressional_copper.items;
 
 import net.displace.progressional_copper.ProgressionalCopper;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SmithingTemplateItem;
@@ -18,24 +20,19 @@ public class ModItems {
 
     public static final DeferredItem<@NotNull Item> RUBY = ITEMS.registerSimpleItem("ruby");
 
-    /*
-    * This should create a smithing template, though I don't think it will work with the tools I need it to.
-    * I think I'll need to use the above stuff to map the smithing template to only work on copper tools with iron ingots.
-    * */
-
-    public static final DeferredItem<@NotNull SmithingTemplateItem> IRON_TO_COPPER_TEMPLATE =
-            ITEMS.register("iron_to_copper_template",
-                    () -> new SmithingTemplateItem(
-                            Component.translatable("item.progressional_copper.smithing_template.iron_to_copper.applies_to"),
-                            Component.translatable("item.progressional_copper.smithing_template.iron_to_copper.ingredients"),
-                            Component.translatable("item.progressional_copper.smithing_template.iron_to_copper.base_slot_description"),
-                            Component.translatable("item.progressional_copper.smithing_template.iron_to_copper.additions_slot_description"),
-                            List.of(Identifier.withDefaultNamespace("container/slot/ingot")),
-                            // Leaving this blank, may break. Just duplicate above code.
-                            List.of(),
-                            new Item.Properties().rarity(Rarity.UNCOMMON)
-                    )
-            );
+    public static final DeferredItem<@NotNull SmithingTemplateItem> COPPER_TO_IRON_TEMPLATE =
+            ITEMS.registerItem("copper_to_iron_template", registryName -> new SmithingTemplateItem(
+                    Component.translatable("item.progressional_copper.smithing_template.copper_to_iron.applies_to"),
+                    Component.translatable("item.progressional_copper.smithing_template.copper_to_iron.ingredients"),
+                    Component.translatable("item.progressional_copper.smithing_template.copper_to_iron.base_slot_description"),
+                    Component.translatable("item.progressional_copper.smithing_template.copper_to_iron.additions_slot_description"),
+                    List.of(Identifier.withDefaultNamespace("container/slot/ingot")),
+                    // Leaving this blank, may break. Just duplicate above code.
+                    List.of(),
+                    // Todo - Find a better way to implement the ID. I'm not really sure what is going on here.
+                    new Item.Properties().setId(ResourceKey.create(Registries.ITEM,
+                            Identifier.fromNamespaceAndPath(ProgressionalCopper.MOD_ID, "copper_to_iron_template")))
+            ));
 
 
     public static void register(IEventBus eventBus) {
