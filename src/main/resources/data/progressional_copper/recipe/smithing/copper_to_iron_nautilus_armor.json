@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": "minecraft:copper_nautilus_armor",
+  "template": "progressional_copper:copper_to_iron_template",
+  "result": {
+    "id": "minecraft:iron_nautilus_armor",
+    "count": 1
+  }
+}
