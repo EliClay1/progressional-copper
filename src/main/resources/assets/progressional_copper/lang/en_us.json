@@ -2,10 +2,10 @@
   "item.progressional_copper.copper_to_iron_template": "Iron Upgrade",
   "item.progressional_copper.ruby": "Ruby",
 
-  "item.progressional_copper.smithing_template.copper_to_iron.applies_to": "Copper Tools",
-  "item.progressional_copper.smithing_template.copper_to_iron.ingredients": "Iron ingot",
+  "item.progressional_copper.smithing_template.copper_to_iron.applies_to": "§6Copper Tools",
+  "item.progressional_copper.smithing_template.copper_to_iron.ingredients": "",
   "item.progressional_copper.smithing_template.copper_to_iron.base_slot_description": "Place copper tools here",
-  "item.progressional_copper.smithing_template.copper_to_iron.additions_slot_description": "Place an iron ingot here",
+  "item.progressional_copper.smithing_template.copper_to_iron.additions_slot_description": "",
 
 
 
