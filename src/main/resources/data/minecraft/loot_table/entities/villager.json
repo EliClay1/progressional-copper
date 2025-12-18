@@ -1,0 +1,77 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "progressional_copper:copper_to_iron_template",
+          "weight": 1
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "type": "minecraft:villager",
+            "nbt": "{VillagerData:{profession:\"minecraft:toolsmith\"}}"
+          }
+        },
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.10
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "progressional_copper:copper_to_iron_template",
+          "weight": 1
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "type": "minecraft:villager",
+            "nbt": "{VillagerData:{profession:\"minecraft:weaponsmith\"}}"
+          }
+        },
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.10
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "progressional_copper:copper_to_iron_template",
+          "weight": 1
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "type": "minecraft:villager",
+            "nbt": "{VillagerData:{profession:\"minecraft:armorer\"}}"
+          }
+        },
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.10
+        }
+      ]
+    }
+  ]
+}
