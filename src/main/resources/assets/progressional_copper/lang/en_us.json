@@ -7,8 +7,8 @@
   "item.progressional_copper.smithing_template.copper_to_iron.base_slot_description": "Place copper equipment here",
   "item.progressional_copper.smithing_template.copper_to_iron.additions_slot_description": "",
 
-
-
+  "advancements.progressional_copper.upgrade_your_gear.title": "I have to upgrade now!?",
+  "advancements.progressional_copper.upgrade_your_gear.description": "Find craft, or kill for an iron upgrade",
 
   "progressional_copper.configuration.title": "Example Mod Configs",
   "progressional_copper.configuration.section.progressional_copper.common.toml": "Example Mod Configs",
