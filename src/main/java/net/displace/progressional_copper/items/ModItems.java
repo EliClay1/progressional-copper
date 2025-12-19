@@ -31,19 +31,16 @@ public class ModItems {
 
     public static DeferredRegister.Items ITEMS = DeferredRegister.createItems(ProgressionalCopper.MOD_ID);
 
-    // TODO - the itemID is a new problem with this version, look into this online.
-
     public static final DeferredItem<@NotNull SmithingTemplateItem> COPPER_TO_IRON_TEMPLATE =
-            ITEMS.registerItem("copper_to_iron_template", registryName -> new SmithingTemplateItem(
+            // in order to avoid the setID error, pass the lambda variable -> the AdvancedItem() (smithing template, pickaxe, etc.)
+            ITEMS.registerItem("copper_to_iron_template", properties -> new SmithingTemplateItem(
                     Component.translatable("item.progressional_copper.smithing_template.copper_to_iron.applies_to"),
                     Component.translatable("item.progressional_copper.smithing_template.copper_to_iron.ingredients"),
                     Component.translatable("item.progressional_copper.smithing_template.copper_to_iron.base_slot_description"),
                     Component.translatable("item.progressional_copper.smithing_template.copper_to_iron.additions_slot_description"),
                     createCopperToIronUpgradeIconList(),
                     List.of(),
-                    // Todo - Find a better way to implement the ID. I'm not really sure what is going on here.
-                    new Item.Properties().setId(ResourceKey.create(Registries.ITEM,
-                            Identifier.fromNamespaceAndPath(ProgressionalCopper.MOD_ID, "copper_to_iron_template")))
+                    properties
             ));
 
     private static List<Identifier> createCopperToIronUpgradeIconList() {
