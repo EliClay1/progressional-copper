@@ -87,7 +87,7 @@
         {
           "type": "minecraft:item",
           "name": "progressional_copper:copper_to_iron_template",
-          "weight": 5
+          "weight": 10
         },
         {
           "type": "minecraft:item",
