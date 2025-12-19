@@ -32,7 +32,6 @@ public class ModItems {
     public static DeferredRegister.Items ITEMS = DeferredRegister.createItems(ProgressionalCopper.MOD_ID);
 
     // TODO - the itemID is a new problem with this version, look into this online.
-    public static final DeferredItem<@NotNull Item> RUBY = ITEMS.registerSimpleItem("ruby");
 
     public static final DeferredItem<@NotNull SmithingTemplateItem> COPPER_TO_IRON_TEMPLATE =
             ITEMS.registerItem("copper_to_iron_template", registryName -> new SmithingTemplateItem(
