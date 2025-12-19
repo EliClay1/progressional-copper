@@ -1,26 +1,16 @@
 package net.displace.progressional_copper;
 
 import net.displace.progressional_copper.items.ModItems;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
-import java.util.HashSet;
-import java.util.Set;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ProgressionalCopper.MOD_ID)
@@ -32,7 +22,7 @@ public class ProgressionalCopper {
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public ProgressionalCopper(IEventBus modEventBus, ModContainer modContainer) {
+    public ProgressionalCopper(IEventBus modEventBus) {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);
 
@@ -47,16 +37,7 @@ public class ProgressionalCopper {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-        // Some common setup code
-//        LOGGER.info("HELLO FROM COMMON SETUP");
 
-//        if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
-//            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-//        }
-
-//        LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
-
-//        Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
     }
 
     // Add the example block item to the building blocks tab
