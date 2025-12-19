@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ModItems {
 
-    private static final Identifier EMPTY_SLOT_HELMET = Identifier.withDefaultNamespace("container/slot/helmet");
+    private static final Identifier EMPTY_SLOT_HELMET = Identifier.withDefaultNamespace("container/kslot/helmet");
     private static final Identifier EMPTY_SLOT_CHESTPLATE = Identifier.withDefaultNamespace("container/slot/chestplate");
     private static final Identifier EMPTY_SLOT_LEGGINGS = Identifier.withDefaultNamespace("container/slot/leggings");
     private static final Identifier EMPTY_SLOT_BOOTS = Identifier.withDefaultNamespace("container/slot/boots");

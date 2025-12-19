@@ -1,51 +1,23 @@
 
-Displace's Template Mod Package
+Progressional - Copper
 ====
+Progressional - Copper is a minecraft mod designed to overhaul the current progression system. I found that while copper tools are cool, they are completely and entirely useless. So I decided to take this concern into my own hands. 
 
-This is specifically a template designed around data generation, and various other more tedious things that I would
-normally have to do over and over again, but apparently I'm now a "programmer", and so I am going to try and 
-use good design principles and focus on building decent code, rather than creating insanely un-optimized slop.
+## So what changes does this *currently make?
 
-The hope with this is that I can use the template when working on some other, far more major mod ideas, but still
-build a good foundation while working on lower end / tiered mods. That being said, when changing this to be the mod name
-a few things must be done.
+- Completely removes all the original iron crafting recipes
+- Adds an upgrade template to convert copper tools into iron
+- Adds a new advancement to show this progression
+- Removes all iron pickaxes from chests
 
-1. Change the name of the base folder, that way the name matches. `net.displace.*insert_mod_name_here*`
-2. The main mod class must also be properly named. `TemplateMod` ➡️ `ProgressionalCopper` or something like that.
-3. The client needs to match the changed information, so the name should also be changed `TemplateModClient`
-4. Change the MOD_ID variable in the main mod class. Make it unique, the last thing you want is a clash with other mod ids.
-5. Modify the `gradle.properties` file. Change it to fit the current mod information.
+You can Find, craft, or kill for the Iron Template, so feel free to use your favorite recipe browsing mod, or refer to the spoiler below. In order to kill for it, it has been added as a 15% drop chance from **Armorer**, **Toolsmith**, and **Weaponsmith** villagers.
 
-_Additional & Useful Information_
-====
-- When working on Mod Compatibility, or some kind of equal task, adding mods for testing should be done within the `run` folder.
-This is where you will add the extra mods.
-- To update the version of neoforge that is running, change `gradle.properties` and check the neoforge site for the latest version.
-For this case, the `neo_version` variable should be changed to the latest version. (for me, `21.11.6-beta`)
-- Building is super easy, just go to the gradle icon, and run `Tasks/Build/jar`. The file will be located in `build/libs`
+Feel free to leave any comments on changes you would like to see, and I hope this adds a little boost of progression to your next playthrough!
 
 
-Installation information
-=======
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+**NOTICE**: This is the first of many progressional mods that will be created. Copper is phase one, but I have plans to redo the entire progression system. Additionally, config modifications to forge the mod into what you want it to be will be released in the next version.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
-
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+\*_currently_ because there will be updates that shift loot tables more, as well as remove certain trades from villagers and various other changes like world gen. In the mean time, all of that is in development.
