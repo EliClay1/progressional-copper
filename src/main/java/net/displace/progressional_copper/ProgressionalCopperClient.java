@@ -25,7 +25,7 @@ public class ProgressionalCopperClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        ProgressionalCopper.LOGGER.info("HELLO FROM CLIENT SETUP");
-        ProgressionalCopper.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+//        ProgressionalCopper.LOGGER.info("HELLO FROM CLIENT SETUP");
+//        ProgressionalCopper.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 }
