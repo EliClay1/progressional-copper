@@ -13,23 +13,18 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
-
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ProgressionalCopper.MOD_ID)
 public class ProgressionalCopper {
-    // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "progressional_copper";
-    // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    // The constructor for the mod class is the first code that is run when your mod is loaded.
-    // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public ProgressionalCopper(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);
 
         // 12/15/2025 - add registrations here.
         ModItems.register(modEventBus);
+        ModCreativeModTabs.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
