@@ -40,6 +40,7 @@ public class ModItems {
                     properties
             ));
 
+
     // while not entirely necessary, this is helpful for code organization.
     private static List<Identifier> createCopperToIronUpgradeIconList() {
         return List.of(EMPTY_SLOT_HELMET, EMPTY_SLOT_SWORD, EMPTY_SLOT_CHESTPLATE, EMPTY_SLOT_PICKAXE,

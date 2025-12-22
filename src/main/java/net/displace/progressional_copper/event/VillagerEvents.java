@@ -44,7 +44,8 @@ public class VillagerEvents {
                     if (ItemStack.isSameItem(offer.getResult(), ironEquipmentList.get(i).getDefaultInstance())) {
                         replaceWithCopper(offer, allOffers, i);
                     }
-                    if (Config.REMOVE_DIAMOND_TRADES.isFalse() && ItemStack.isSameItem(offer.getResult(), diamondEquipmentList.get(i).getDefaultInstance())) {
+                    if (Config.REPLACE_DIAMOND_WITH_COPPER_TRADES.isTrue() && ItemStack.isSameItem(offer.getResult(),
+                            diamondEquipmentList.get(i).getDefaultInstance())) {
                         // TODO - maybe make this have some kind of randomization feature?
                         replaceWithCopper(offer, allOffers, i);
                     }
