@@ -23,6 +23,7 @@ public class DataGenerator {
         dataGenerator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
 
+        dataGenerator.addProvider(true, new ModModelProvider(packOutput));
 
     }
 }

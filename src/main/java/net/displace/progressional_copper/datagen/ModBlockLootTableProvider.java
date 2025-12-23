@@ -23,8 +23,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 //        dropSelf(ModBlocks.TEST_BLOCK.get());
 //        this.add(ModBlocks.TEST_BLOCK.get(), block -> createDrop...()); Additionally, overriding createDrop functionality.
 
-        this.add(ModBlocks.TEST_BLOCK.get(),
-                block -> createOreDrop(ModBlocks.TEST_BLOCK.get(), ModItems.COPPER_TO_IRON_TEMPLATE.get()));
+//        this.add(ModBlocks.TEST_BLOCK.get(),
+//                block -> createOreDrop(ModBlocks.TEST_BLOCK.get(), ModItems.COPPER_TO_IRON_TEMPLATE.get()));
     }
 
     @Override
