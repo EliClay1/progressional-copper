@@ -1,8 +1,10 @@
 package net.displace.progressional_copper.items;
 
 import net.displace.progressional_copper.ProgressionalCopper;
+import net.displace.progressional_copper.blocks.ModBlocks;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.SmithingTemplateItem;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -39,6 +41,8 @@ public class ModItems {
                     List.of(),
                     properties
             ));
+
+    public static final DeferredItem<@NotNull BlockItem> TEST_BLOCK = ITEMS.registerSimpleBlockItem(ModBlocks.TEST_BLOCK);
 
 
     // while not entirely necessary, this is helpful for code organization.

@@ -1,5 +1,6 @@
 package net.displace.progressional_copper;
 
+import net.displace.progressional_copper.blocks.ModBlocks;
 import net.displace.progressional_copper.items.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -21,6 +22,7 @@ public class ModCreativeModTabs {
                     .icon(() -> new ItemStack(ModItems.COPPER_TO_IRON_TEMPLATE.get()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.COPPER_TO_IRON_TEMPLATE);
+                        pOutput.accept(ModItems.TEST_BLOCK);
                     })
                     .build());
 

@@ -1,5 +1,6 @@
 package net.displace.progressional_copper;
 
+import net.displace.progressional_copper.blocks.ModBlocks;
 import net.displace.progressional_copper.items.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.fml.ModContainer;
@@ -24,9 +25,11 @@ public class ProgressionalCopper {
 
         // 12/15/2025 - add registrations here.
         ModItems.register(modEventBus);
-        ModCreativeModTabs.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        System.out.println("Blocks registered!");
 
         // Register the item to a creative tab
+        ModCreativeModTabs.register(modEventBus);
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
