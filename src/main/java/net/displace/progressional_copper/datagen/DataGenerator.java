@@ -24,6 +24,7 @@ public class DataGenerator {
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
 
         dataGenerator.addProvider(true, new ModModelProvider(packOutput));
+        dataGenerator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
 
     }
 }

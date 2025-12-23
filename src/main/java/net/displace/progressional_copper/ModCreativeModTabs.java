@@ -22,7 +22,7 @@ public class ModCreativeModTabs {
                     .icon(() -> new ItemStack(ModItems.COPPER_TO_IRON_TEMPLATE.get()))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.COPPER_TO_IRON_TEMPLATE);
-                        pOutput.accept(ModItems.TEST_BLOCK);
+//                        pOutput.accept(ModItems.TEST_BLOCK);
                     })
                     .build());
 

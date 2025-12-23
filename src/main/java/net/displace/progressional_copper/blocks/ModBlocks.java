@@ -16,8 +16,8 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ProgressionalCopper.MOD_ID);
 
-    public static final DeferredBlock<@NotNull Block> TEST_BLOCK = BLOCKS.registerBlock("test_block",
-            Block::new);
+//    public static final DeferredBlock<@NotNull Block> TEST_BLOCK = BLOCKS.registerBlock("test_block",
+//            Block::new);
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

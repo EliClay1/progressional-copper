@@ -42,7 +42,7 @@ public class ModItems {
                     properties
             ));
 
-    public static final DeferredItem<@NotNull BlockItem> TEST_BLOCK = ITEMS.registerSimpleBlockItem(ModBlocks.TEST_BLOCK);
+//    public static final DeferredItem<@NotNull BlockItem> TEST_BLOCK = ITEMS.registerSimpleBlockItem(ModBlocks.TEST_BLOCK);
 
 
     // while not entirely necessary, this is helpful for code organization.
