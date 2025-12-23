@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smithing_transform",
-  "base": "minecraft:copper_helmet",
-  "template": "progressional_copper:copper_to_iron_template",
-  "result": {
-    "id": "minecraft:iron_helmet",
-    "count": 1
-  }
-}

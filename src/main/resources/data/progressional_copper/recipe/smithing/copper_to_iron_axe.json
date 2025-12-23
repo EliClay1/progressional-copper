@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smithing_transform",
-  "base": "minecraft:copper_axe",
-  "template": "progressional_copper:copper_to_iron_template",
-  "result": {
-    "id": "minecraft:iron_axe",
-    "count": 1
-  }
-}

@@ -1,14 +1,29 @@
 package net.displace.progressional_copper.datagen;
 
+import net.displace.progressional_copper.ProgressionalCopper;
+import net.displace.progressional_copper.datagen.custom_builders.CustomSmithingRecipeBuilder;
+import net.displace.progressional_copper.event.VillagerEvents;
 import net.displace.progressional_copper.items.ModItems;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import org.jetbrains.annotations.NotNull;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider {
@@ -32,9 +47,12 @@ public class ModRecipeProvider extends RecipeProvider {
         }
     }
 
+    private final List<Item> copperEquipment = VillagerEvents.copperEquipmentList;
+    private final List<Item> ironEquipment = VillagerEvents.ironEquipmentList;
+
     @Override
     protected void buildRecipes() {
-
+        // template crafting recipe
         shaped(RecipeCategory.TOOLS, ModItems.COPPER_TO_IRON_TEMPLATE.get())
                 .pattern("CSC")
                 .pattern("IEI")
@@ -44,9 +62,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('I', Items.IRON_INGOT)
                 .define('E', Items.EMERALD)
                 .unlockedBy("has_copper", has(Items.COPPER_BLOCK))
-                .save(output, "copper_to_iron_template");
+                .save(output, ResourceKey.create(Registries.RECIPE, Identifier.parse(
+                        String.format("%s:crafting/%s", ProgressionalCopper.MOD_ID, "copper_to_iron_template"))));
 
-        shaped(RecipeCategory.TOOLS, ModItems.COPPER_TO_IRON_TEMPLATE.get())
+        // template duplication recipe
+        shaped(RecipeCategory.TOOLS, ModItems.COPPER_TO_IRON_TEMPLATE.get(), 2)
                 .pattern("CTC")
                 .pattern("CSC")
                 .pattern("III")
@@ -55,6 +75,38 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('I', Items.IRON_INGOT)
                 .define('T', ModItems.COPPER_TO_IRON_TEMPLATE)
                 .unlockedBy("has_copper_to_iron_template", has(ModItems.COPPER_TO_IRON_TEMPLATE))
-                .save(output, "copper_to_iron_template_duplicate");
+                .save(output, ResourceKey.create(Registries.RECIPE, Identifier.parse(
+                        String.format("%s:crafting/%s", ProgressionalCopper.MOD_ID, "copper_to_iron_template_duplicate"))));
+
+        // copper to iron smithing recipes
+        for (int i = 0; i < copperEquipment.size(); i++) {
+            createCopperToIronTemplateRecipes(i);
+            // removes recipes for iron
+            removeRecipe("minecraft", ironEquipment.get(i).asItem().toString().toLowerCase().split(":")[1]);
+        }
+
+    }
+
+    private void createCopperToIronTemplateRecipes(int index) {
+        String itemAsString = ironEquipment.get(index).asItem().toString().toLowerCase().split(":")[1] + "_smithing";
+
+        CustomSmithingRecipeBuilder
+                .smithing(Ingredient.of(ModItems.COPPER_TO_IRON_TEMPLATE),
+                Ingredient.of(copperEquipment.get(index)), RecipeCategory.TOOLS,
+                VillagerEvents.ironEquipmentList.get(index))
+                .unlocks("has_copper_to_iron_template", has(ModItems.COPPER_TO_IRON_TEMPLATE))
+                .save(output, ResourceKey.create(Registries.RECIPE, Identifier.parse(
+                        String.format("%s:smithing/%s", ProgressionalCopper.MOD_ID, itemAsString))));
+    }
+
+    public void removeRecipe(String namespaceId, String recipeId) {
+        ResourceKey<@NotNull Recipe<?>> resourceKey = ResourceKey.create(Registries.RECIPE,
+                Identifier.parse(String.format("%s:%s", namespaceId, recipeId)));
+
+        shapeless(RecipeCategory.MISC, Items.BARRIER)
+                .requires(Items.BARRIER)
+                .unlockedBy("never", RecipeUnlockedTrigger.unlocked(resourceKey))
+                .save(output, resourceKey);
+
     }
 }
