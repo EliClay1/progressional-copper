@@ -1,11 +1,13 @@
 package net.displace.progressional_copper.datagen;
 
 import net.displace.progressional_copper.ProgressionalCopper;
+import net.displace.progressional_copper.datagen.loot.RemoveItemModifier;
 import net.displace.progressional_copper.items.ModItems;
 import net.displace.progressional_copper.datagen.loot.AddItemModifier;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
@@ -22,6 +24,7 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
 
     @Override
     protected void start() {
+        // generates smithing templates and removes iron picks within the villager chests
         generateVillageChests();
     }
 
@@ -32,6 +35,11 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                             new LootTableIdCondition.Builder(Identifier.withDefaultNamespace(String.format("chests/village/%s", location))).build(),
                             LootItemRandomChanceCondition.randomChance(0.50f).build()
                     }, ModItems.COPPER_TO_IRON_TEMPLATE.get()));
+
+            this.add(String.format("remove_iron_pickaxe_from_%s", location),
+                    new RemoveItemModifier(new LootItemCondition[] {
+                            new LootTableIdCondition.Builder(Identifier.withDefaultNamespace(String.format("chests/village/%s", location))).build()
+                    }, Items.IRON_PICKAXE));
         }
     }
 }

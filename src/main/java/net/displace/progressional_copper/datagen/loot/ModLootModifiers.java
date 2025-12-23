@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.displace.progressional_copper.ProgressionalCopper;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +17,13 @@ public class ModLootModifiers {
 
     public static final Supplier<MapCodec<? extends IGlobalLootModifier>> ADD_ITEM =
             LOOT_MODIFIER_SERIALIZERS.register("add_item", () -> AddItemModifier.CODEC);
+
+    public static final Supplier<MapCodec<? extends IGlobalLootModifier>> REMOVE_ITEM =
+            LOOT_MODIFIER_SERIALIZERS.register("remove_item", () -> RemoveItemModifier.CODEC);
+
+    public static final Supplier<MapCodec<? extends IGlobalLootModifier>> REPLACE_ITEM =
+            LOOT_MODIFIER_SERIALIZERS.register("replace_item", () -> RemoveItemModifier.CODEC);
+
 
     public static void register(IEventBus eventBus) {
         LOOT_MODIFIER_SERIALIZERS.register(eventBus);
