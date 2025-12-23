@@ -1,7 +1,6 @@
 package net.displace.progressional_copper.datagen;
 
 import net.displace.progressional_copper.blocks.ModBlocks;
-import net.displace.progressional_copper.items.ModItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -22,9 +21,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         /// Available options to drop blocks:
 //        dropSelf(ModBlocks.TEST_BLOCK.get());
 //        this.add(ModBlocks.TEST_BLOCK.get(), block -> createDrop...()); Additionally, overriding createDrop functionality.
-
-//        this.add(ModBlocks.TEST_BLOCK.get(),
-//                block -> createOreDrop(ModBlocks.TEST_BLOCK.get(), ModItems.COPPER_TO_IRON_TEMPLATE.get()));
     }
 
     @Override

@@ -24,7 +24,7 @@ public class AddItemModifier extends LootModifier {
     }
 
     @Override
-    protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext lootContext) {
+    protected @NotNull ObjectArrayList<ItemStack> doApply(@NotNull ObjectArrayList<ItemStack> generatedLoot, @NotNull LootContext lootContext) {
         for (LootItemCondition condition : this.conditions) {
             if(!condition.test(lootContext)) {
                 return generatedLoot;
@@ -35,7 +35,7 @@ public class AddItemModifier extends LootModifier {
     }
 
     @Override
-    public MapCodec<? extends IGlobalLootModifier> codec() {
+    public @NotNull MapCodec<? extends IGlobalLootModifier> codec() {
         return CODEC;
     }
 }

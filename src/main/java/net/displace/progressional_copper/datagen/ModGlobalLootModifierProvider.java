@@ -5,11 +5,11 @@ import net.displace.progressional_copper.items.ModItems;
 import net.displace.progressional_copper.datagen.loot.AddItemModifier;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
+import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -18,11 +18,20 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
         super(output, registries, ProgressionalCopper.MOD_ID);
     }
 
+    private final String[] villageChestNames = {"village_toolsmith", "village_weaponsmith"};
+
     @Override
     protected void start() {
-        this.add("radish_seeds_to_short_grass",
-                new AddItemModifier(new LootItemCondition[] {
-                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.SHORT_GRASS).build(),
-                        LootItemRandomChanceCondition.randomChance(0.25f).build() }, ModItems.COPPER_TO_IRON_TEMPLATE.get()));
+        generateVillageChests();
+    }
+
+    private void generateVillageChests() {
+        for (String location : villageChestNames) {
+            this.add(String.format("smithing_template_from_%s", location),
+                    new AddItemModifier(new LootItemCondition[] {
+                            new LootTableIdCondition.Builder(Identifier.withDefaultNamespace(String.format("chests/village/%s", location))).build(),
+                            LootItemRandomChanceCondition.randomChance(0.50f).build()
+                    }, ModItems.COPPER_TO_IRON_TEMPLATE.get()));
+        }
     }
 }
