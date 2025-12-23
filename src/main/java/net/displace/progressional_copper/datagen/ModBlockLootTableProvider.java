@@ -18,7 +18,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+
+        /// Available options to drop blocks:
 //        dropSelf(ModBlocks.TEST_BLOCK.get());
+//        this.add(ModBlocks.TEST_BLOCK.get(), block -> createDrop...()); Additionally, overriding createDrop functionality.
 
         this.add(ModBlocks.TEST_BLOCK.get(),
                 block -> createOreDrop(ModBlocks.TEST_BLOCK.get(), ModItems.COPPER_TO_IRON_TEMPLATE.get()));
@@ -26,6 +29,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
+        // returns all the known blocks within the ModBlocks class
         return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
 }
