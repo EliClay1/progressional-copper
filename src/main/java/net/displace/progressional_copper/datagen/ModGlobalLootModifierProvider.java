@@ -66,8 +66,8 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
             this.add(String.format("emerald_increase_in_%s", location),
                     new AddItemModifier(new LootItemCondition[] {
                             new LootTableIdCondition.Builder(Identifier.withDefaultNamespace(String.format("chests/village/%s", location))).build(),
-                            LootItemRandomChanceCondition.randomChance(0.70f).build(),
-                    }, Items.EMERALD, 1, 3));
+                            LootItemRandomChanceCondition.randomChance(0.50f).build(),
+                    }, Items.EMERALD, 14, 15));
         }
     }
 }
