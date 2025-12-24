@@ -1,6 +1,5 @@
 package net.displace.progressional_copper.datagen.loot;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
@@ -13,19 +12,19 @@ import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
 import org.jetbrains.annotations.NotNull;
 
-public class AddItemModifier extends LootModifier {
-    public static final MapCodec<AddItemModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
+public class ReplaceItemModifier extends LootModifier {
+    public static final MapCodec<ReplaceItemModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
             LootModifier.codecStart(inst).and(inst.group(
-                    BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(e -> e.item),
-                    Codec.INT.fieldOf("count").forGetter(e -> e.count)
-            )).apply(inst, AddItemModifier::new));
-    private final Item item;
-    private final int count;
+                    BuiltInRegistries.ITEM.byNameCodec().fieldOf("from").forGetter(e -> e.from),
+                    BuiltInRegistries.ITEM.byNameCodec().fieldOf("to").forGetter(e -> e.to)
+            )).apply(inst, ReplaceItemModifier::new));
+    private final Item from;
+    private final Item to;
 
-    public AddItemModifier(LootItemCondition[] conditionsIn, Item item, int count) {
+    public ReplaceItemModifier(LootItemCondition[] conditionsIn, Item from, Item to) {
         super(conditionsIn);
-        this.item = item;
-        this.count = count;
+        this.from = from;
+        this.to = to;
     }
 
     @Override
@@ -35,7 +34,11 @@ public class AddItemModifier extends LootModifier {
                 return generatedLoot;
             }
         }
-        generatedLoot.add(new ItemStack(this.item, count));
+        for (int i = 0; i < generatedLoot.size(); i++) {
+            if (generatedLoot.get(i).getItem() == this.from) {
+                generatedLoot.set(i, new ItemStack(this.to));
+            }
+        }
         return generatedLoot;
     }
 
