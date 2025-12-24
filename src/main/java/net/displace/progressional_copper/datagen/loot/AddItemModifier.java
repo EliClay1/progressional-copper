@@ -13,19 +13,24 @@ import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public class AddItemModifier extends LootModifier {
     public static final MapCodec<AddItemModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
             LootModifier.codecStart(inst).and(inst.group(
                     BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(e -> e.item),
-                    Codec.INT.fieldOf("count").forGetter(e -> e.count)
+                    Codec.INT.fieldOf("minCount").forGetter(e -> e.minCount),
+                    Codec.INT.fieldOf("maxCount").forGetter(e -> e.maxCount)
             )).apply(inst, AddItemModifier::new));
     private final Item item;
-    private final int count;
+    private final int minCount;
+    private final int maxCount;
 
-    public AddItemModifier(LootItemCondition[] conditionsIn, Item item, int count) {
+    public AddItemModifier(LootItemCondition[] conditionsIn, Item item, int minCount, int maxCount) {
         super(conditionsIn);
         this.item = item;
-        this.count = count;
+        this.minCount = minCount;
+        this.maxCount = maxCount;
     }
 
     @Override
@@ -35,6 +40,10 @@ public class AddItemModifier extends LootModifier {
                 return generatedLoot;
             }
         }
+        // TODO fix the count function. This is not doing what it should be
+
+        Random random = new Random();
+        int count = random.nextInt((maxCount - minCount) + 1) + minCount;
         generatedLoot.add(new ItemStack(this.item, count));
         return generatedLoot;
     }
