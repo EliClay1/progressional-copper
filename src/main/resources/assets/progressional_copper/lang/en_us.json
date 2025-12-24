@@ -14,6 +14,7 @@
 
   "progressional_copper.configuration.title": "Progressional - Copper Config",
   "progressional_copper.configuration.section.progressional.copper.common.toml": "Progressional - Copper Config",
-  "progressional_copper.configuration.replaceDiamondWithCopperTrade.tooltip": "Removes all diamond equipment trades from any kind of villager trades.",
-  "progressional_copper.configuration.replaceDiamondWithCopperTrade": "replaceDiamondTrades"
+  "progressional_copper.configuration.replace_diamond_with_copper_trade": "replaceDiamondTrades",
+  "progressional_copper.configuration.smithing_template_chance": "smithingTemplateLootChance",
+  "progressional_copper.configuration.emerald_increase_chance": "emeraldIncreaseChance"
 }
