@@ -11,7 +11,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -27,11 +26,12 @@ import net.neoforged.neoforge.event.LootTableLoadEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
-import java.util.Map;
 import java.util.Random;
 
 @EventBusSubscriber(modid = ProgressionalCopper.MOD_ID)
 public class LootTableEvents {
+
+//    public static final Logger LOGGER = LoggerFactory.getLogger("progressional_copper");
 
     private static final String[] smithVillageChests = {"village_toolsmith", "village_weaponsmith"};
     private static final String[] emeraldVillageChests = {"village_plains_house", "village_desert_house",
@@ -49,6 +49,9 @@ public class LootTableEvents {
             if (tableId.toString().contains(String.format("village/%s", location))) {
                 LootTable originalTable = event.getTable();
                 float chance = Config.EMERALD_INCREASE_CHANCE.get().floatValue();
+                if (chance <= 0) {
+                    return;
+                }
                 Random random = new Random();
                 int count = random.nextInt((maxCount - minCount) + 1) + minCount;
                 LootPool customPool = LootPool.lootPool()
@@ -62,7 +65,7 @@ public class LootTableEvents {
             }
         }
 
-        // smithing template
+        // smithing template (iron tool replacement is within the PlayerInteractions class)
         for (String location : smithVillageChests) {
             int minCount = 1;
 
@@ -70,6 +73,9 @@ public class LootTableEvents {
             if (tableId.toString().contains(String.format("village/%s", location))) {
                 LootTable originalTable = event.getTable();
                 float chance = Config.SMITHING_TEMPLATE_CHEST_CHANCE.get().floatValue();
+                if (chance <= 0) {
+                    return;
+                }
                 Random random = new Random();
                 int count = random.nextInt(1) + minCount;
                 LootPool customPool = LootPool.lootPool()
@@ -84,28 +90,32 @@ public class LootTableEvents {
 
         // villager loot tables
         Identifier tableId = event.getName();
-        if (tableId.toString().contains("entity/villager")) {
+        if (tableId.getPath().startsWith("entities/villager")) {
             LootTable originalTable = event.getTable();
             float chance = Config.SMITHING_TEMPLATE_DROP_CHANCE.get().floatValue();
-
             HolderLookup.Provider registries = event.getRegistries();
 
-            LootPool customPool = LootPool.lootPool()
-                    .add(LootItem.lootTableItem(ModItems.COPPER_TO_IRON_TEMPLATE.get())
-                            .setWeight(1)
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
-                    .when(LootItemRandomChanceCondition.randomChance(chance))
-                    .when(LootItemEntityPropertyCondition.hasProperties(
-                            LootContext.EntityTarget.THIS,
-                            getArmorerPredicate(registries.lookupOrThrow(Registries.ENTITY_TYPE))
-                            )).build();
-            originalTable.addPool(customPool);
+            String[] professions = {"armorer", "toolsmith", "weaponsmith"};
+
+            for (String profession: professions) {
+                LootPool customPool = LootPool.lootPool()
+                        .add(LootItem.lootTableItem(ModItems.COPPER_TO_IRON_TEMPLATE.get())
+                                .setWeight(1)
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                        .when(LootItemRandomChanceCondition.randomChance(chance))
+                        .when(LootItemEntityPropertyCondition.hasProperties(
+                                LootContext.EntityTarget.THIS,
+                                getProfessionPredicate(registries.lookupOrThrow(Registries.ENTITY_TYPE), profession)
+                        ))
+                        .build();
+                originalTable.addPool(customPool);
+            }
         }
     }
 
-    private static EntityPredicate getArmorerPredicate(HolderGetter<@NotNull EntityType<?>> entityTypes) {
+    private static EntityPredicate getProfessionPredicate(HolderGetter<@NotNull EntityType<?>> entityTypes, String profession) {
         CompoundTag villagerData = new CompoundTag();
-        villagerData.putString("profession", "minecraft:armorer");
+        villagerData.putString("profession", String.format("minecraft:%s", profession));
 
         CompoundTag nbt = new CompoundTag();
         nbt.put("VillagerData", villagerData);
