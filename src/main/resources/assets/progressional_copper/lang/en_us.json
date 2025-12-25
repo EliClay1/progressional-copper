@@ -15,6 +15,8 @@
   "progressional_copper.configuration.title": "Progressional - Copper Config",
   "progressional_copper.configuration.section.progressional.copper.common.toml": "Progressional - Copper Config",
   "progressional_copper.configuration.replace_diamond_with_copper_trade": "replaceDiamondTrades",
-  "progressional_copper.configuration.smithing_template_chance": "smithingTemplateLootChance",
-  "progressional_copper.configuration.emerald_increase_chance": "emeraldIncreaseChance"
+  "progressional_copper.configuration.smithing_template_chest_chance": "smithingTemplateLootChance",
+  "progressional_copper.configuration.smithing_template_drop_chance": "smithingTemplateDropChance",
+  "progressional_copper.configuration.emerald_increase_chance": "emeraldIncreaseChance",
+  "progressional_copper.configuration.replace_iron_with_copper_chest": "replaceIronWithCopper"
 }

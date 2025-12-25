@@ -2,7 +2,7 @@ package net.displace.progressional_copper.datagen;
 
 import net.displace.progressional_copper.ProgressionalCopper;
 import net.displace.progressional_copper.datagen.custom_builders.CustomSmithingRecipeBuilder;
-import net.displace.progressional_copper.event.VillagerEvents;
+import net.displace.progressional_copper.event.PlayerInteractions;
 import net.displace.progressional_copper.items.ModItems;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup;
@@ -11,7 +11,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
@@ -20,9 +19,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import org.jetbrains.annotations.NotNull;
 
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
@@ -47,8 +43,8 @@ public class ModRecipeProvider extends RecipeProvider {
         }
     }
 
-    private final List<Item> copperEquipment = VillagerEvents.copperEquipmentList;
-    private final List<Item> ironEquipment = VillagerEvents.ironEquipmentList;
+    private final List<Item> copperEquipment = PlayerInteractions.copperEquipmentList;
+    private final List<Item> ironEquipment = PlayerInteractions.ironEquipmentList;
 
     @Override
     protected void buildRecipes() {
@@ -93,7 +89,7 @@ public class ModRecipeProvider extends RecipeProvider {
         CustomSmithingRecipeBuilder
                 .smithing(Ingredient.of(ModItems.COPPER_TO_IRON_TEMPLATE),
                 Ingredient.of(copperEquipment.get(index)), RecipeCategory.TOOLS,
-                VillagerEvents.ironEquipmentList.get(index))
+                PlayerInteractions.ironEquipmentList.get(index))
                 .unlocks("has_copper_to_iron_template", has(ModItems.COPPER_TO_IRON_TEMPLATE))
                 .save(output, ResourceKey.create(Registries.RECIPE, Identifier.parse(
                         String.format("%s:smithing/%s", ProgressionalCopper.MOD_ID, itemAsString))));
