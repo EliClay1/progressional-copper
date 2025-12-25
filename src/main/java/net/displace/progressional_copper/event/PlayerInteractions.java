@@ -87,12 +87,12 @@ private static final Map<Item, Item> copperToIronChestConversions = Map.ofEntrie
             for (MerchantOffer offer : allOffers) {
 
                 for (int i = 0; i < copperEquipmentList.size(); i++) {
-                    if (ItemStack.isSameItem(offer.getResult(), ironEquipmentList.get(i).getDefaultInstance())) {
+                    if (Config.REPLACE_IRON_WITH_COPPER_TRADES.isTrue() && ItemStack.isSameItem(offer.getResult(),
+                            new ItemStack(ironEquipmentList.get(i)))) {
                         replaceIronWithCopperTrades(offer, allOffers, i);
                     }
                     if (Config.REPLACE_DIAMOND_WITH_COPPER_TRADES.isTrue() && ItemStack.isSameItem(offer.getResult(),
-                            diamondEquipmentList.get(i).getDefaultInstance())) {
-                        // TODO - maybe make this have some kind of randomization feature?
+                            new ItemStack(diamondEquipmentList.get(i)))) {
                         replaceIronWithCopperTrades(offer, allOffers, i);
                     }
                 }
@@ -109,8 +109,11 @@ private static final Map<Item, Item> copperToIronChestConversions = Map.ofEntrie
                 if (lootTableResourceKey == null) {
                     return;
                 }
+                List<String> paths = List.of("toolsmith", "weaponsmith", "abandoned_mineshaft", "buried_treasure", "shipwreck_map",
+                        "shipwreck_supply", "shipwreck_treasure", "underwater_ruin_big", "underwater_ruin_small");
+
                 var path = lootTableResourceKey.identifier().getPath();
-                if (path.contains("toolsmith") || path.contains("weaponsmith")) {
+                if (paths.contains(path)) {
                     copperToIronChestConversions.forEach((copperItem, ironItem) ->
                             replaceItemFromChest(chestBlockEntity, ironItem, copperItem));
                 }
@@ -128,6 +131,7 @@ private static final Map<Item, Item> copperToIronChestConversions = Map.ofEntrie
         }
         chest.setChanged();
     }
+
     private static void replaceIronWithCopperTrades(MerchantOffer offer, MerchantOffers allOffers, int index) {
         List<EnchantmentInstance> enchantmentInstanceList = new ArrayList<>();
 

@@ -9,6 +9,10 @@ public class Config {
             .comment("Removes all diamond trades to match the progression balance (default: On)")
             .define("replace_diamond_with_copper_trade", true);
 
+    public static final ModConfigSpec.BooleanValue REPLACE_IRON_WITH_COPPER_TRADES = BUILDER
+            .comment("Removes all iron trades to match the progression balance (default: On)")
+            .define("replace_iron_with_copper_trade", true);
+
     public static final ModConfigSpec.DoubleValue SMITHING_TEMPLATE_CHEST_CHANCE = BUILDER
             .comment("Chance to find smithing template in village toolsmith/weaponsmith")
             .defineInRange("smithing_template_chest_chance", 0.7D, 0.0D, 1.0D);
