@@ -15,8 +15,6 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.Random;
@@ -24,24 +22,12 @@ import java.util.Random;
 @EventBusSubscriber(modid = ProgressionalCopper.MOD_ID)
 public class LootTableEvents {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger("progressional_copper");
     private static final String[] smithVillageChests = {"village_toolsmith", "village_weaponsmith"};
     private static final String[] emeraldVillageChests = {"village_plains_house", "village_desert_house",
             "village_savanna_house", "village_snowy_house", "village_taiga_house"};
-    private static final Map<Item, Item> copperToIron = Map.ofEntries(
-            Map.entry(Items.COPPER_PICKAXE, Items.IRON_PICKAXE),
-            Map.entry(Items.COPPER_SHOVEL, Items.IRON_SHOVEL),
-            Map.entry(Items.COPPER_SWORD, Items.IRON_SWORD),
-            Map.entry(Items.COPPER_HELMET, Items.IRON_HELMET),
-            Map.entry(Items.COPPER_CHESTPLATE, Items.IRON_CHESTPLATE),
-            Map.entry(Items.COPPER_LEGGINGS, Items.IRON_LEGGINGS),
-            Map.entry(Items.COPPER_BOOTS, Items.IRON_BOOTS),
-            Map.entry(Items.COPPER_HORSE_ARMOR, Items.IRON_HORSE_ARMOR),
-            Map.entry(Items.COPPER_SPEAR, Items.IRON_SPEAR)
-    );
 
     @SubscribeEvent
-    public static void chestOpen(LootTableLoadEvent event) {
+    public static void lootTableLoading(LootTableLoadEvent event) {
 
         // emerald increase
         for (String location : emeraldVillageChests) {
@@ -81,8 +67,10 @@ public class LootTableEvents {
                                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(count))))
                         .when(LootItemRandomChanceCondition.randomChance(chance))
                         .build();
-
                 originalTable.addPool(customPool);
+
+                LootPool replacementPool = LootPool.lootPool()
+                        .build();
             }
         }
     }
