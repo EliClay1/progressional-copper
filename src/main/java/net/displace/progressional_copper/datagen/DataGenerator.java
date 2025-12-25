@@ -27,5 +27,6 @@ public class DataGenerator {
         dataGenerator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
 //        dataGenerator.addProvider(true, new ModGlobalLootModifierProvider(packOutput, lookupProvider));
 
+        dataGenerator.addProvider(true, ModAdvancementProvider.create(packOutput, lookupProvider));
     }
 }

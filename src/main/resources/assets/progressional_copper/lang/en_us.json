@@ -7,8 +7,8 @@
   "item.progressional_copper.smithing_template.copper_to_iron.base_slot_description": "Place copper equipment here",
   "item.progressional_copper.smithing_template.copper_to_iron.additions_slot_description": "",
 
-  "advancements.progressional_copper.upgrade_your_gear.title": "I have to upgrade now!?",
-  "advancements.progressional_copper.upgrade_your_gear.description": "Find, craft, or kill for an iron upgrade",
+  "advancements.progressional_copper.story/copper_upgrade.title": "I have to upgrade now!?",
+  "advancements.progressional_copper.story/copper_upgrade.description": "Find, craft, or kill for an iron upgrade",
 
   "itemGroup.progressional_copper.progressional_copper_items_tab": "Progressional - Copper: Items",
 
