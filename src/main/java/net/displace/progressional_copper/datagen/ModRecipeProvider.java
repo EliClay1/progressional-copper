@@ -1,10 +1,13 @@
 package net.displace.progressional_copper.datagen;
 
 import net.displace.progressional_copper.ProgressionalCopper;
+import net.displace.progressional_copper.datagen.custom_builders.CustomShapelessRecipeBuilder;
 import net.displace.progressional_copper.datagen.custom_builders.CustomSmithingRecipeBuilder;
 import net.displace.progressional_copper.event.PlayerInteractions;
 import net.displace.progressional_copper.items.ModItems;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -17,6 +20,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.neoforged.neoforge.common.crafting.ConditionalRecipeOutput;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -57,7 +61,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('S', Items.STONE)
                 .define('I', Items.IRON_INGOT)
                 .define('E', Items.EMERALD)
-                .unlockedBy("has_copper", has(Items.COPPER_BLOCK))
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT))
                 .save(output, ResourceKey.create(Registries.RECIPE, Identifier.parse(
                         String.format("%s:crafting/%s", ProgressionalCopper.MOD_ID, "copper_to_iron_template"))));
 
@@ -78,7 +82,7 @@ public class ModRecipeProvider extends RecipeProvider {
         for (int i = 0; i < copperEquipment.size(); i++) {
             createCopperToIronTemplateRecipes(i);
             // removes recipes for iron
-            removeRecipe("minecraft", ironEquipment.get(i).asItem().toString().toLowerCase().split(":")[1]);
+//            removeRecipe("minecraft", ironEquipment.get(i).asItem().toString().toLowerCase().split(":")[1]);
         }
 
     }
@@ -95,14 +99,10 @@ public class ModRecipeProvider extends RecipeProvider {
                         String.format("%s:smithing/%s", ProgressionalCopper.MOD_ID, itemAsString))));
     }
 
+    // TODO - ensure that this recipe DOES NOT SHOW IN THE BOOK. Override advancements if you have to.
+
     public void removeRecipe(String namespaceId, String recipeId) {
         ResourceKey<@NotNull Recipe<?>> resourceKey = ResourceKey.create(Registries.RECIPE,
                 Identifier.parse(String.format("%s:%s", namespaceId, recipeId)));
-
-        shapeless(RecipeCategory.MISC, Items.BARRIER)
-                .requires(Items.BARRIER)
-                .unlockedBy("never", RecipeUnlockedTrigger.unlocked(resourceKey))
-                .save(output, resourceKey);
-
     }
 }

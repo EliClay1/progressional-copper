@@ -36,7 +36,7 @@ public class ModAdvancementProvider extends AdvancementProvider {
             Advancement.Builder builder = Advancement.Builder.advancement();
             generateNewBasicAdvancement(provider, consumer, builder, ModItems.COPPER_TO_IRON_TEMPLATE.get(),
                     "story/copper_upgrade", "minecraft:story/smelt_iron",
-                    null, null, true, true, false,
+                    null, AdvancementType.GOAL, true, true, false,
                     "has_iron_template", ModItems.COPPER_TO_IRON_TEMPLATE.get(), ProgressionalCopper.MOD_ID);
         }
     }
